@@ -13,12 +13,15 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static com.franco227.shearable_blazes.ShearableBlazes.MOD_ID;
 
 @Mixin(BlazeEntity.class)
 public abstract class BlazeEntityMixin extends HostileEntity implements Shearable, ShearableEntity {
@@ -28,6 +31,16 @@ public abstract class BlazeEntityMixin extends HostileEntity implements Shearabl
 
     protected BlazeEntityMixin(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    public Identifier getLootTableId() {
+        if (this.shearableBlazes$isSheared()) {
+            Identifier identifier = Identifier.of(MOD_ID, "blaze");
+            if (identifier != null) {
+                return identifier.withPrefixedPath("entities/");
+            }
+        }
+        return this.getType().getLootTableId();
     }
 
     @Override
