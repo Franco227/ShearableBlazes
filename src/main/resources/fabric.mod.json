@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "shearable-blazes",
+	"version": "${version}",
+	"name": "Shearable Blazes",
+	"description": "You can now shear blazes for their rods! Also you can milk then for lava buckets.",
+	"authors": [
+		"Franco227"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/shearable-blazes",
+		"sources": "https://github.com/Franco227/ShearableBlazes",
+		"issues": "https://github.com/Franco227/ShearableBlazes/issues"
+	},
+	"license": "GPL-3.0",
+	"icon": "assets/shearable-blazes/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.franco227.shearable_blazes.ShearableBlazes"
+		],
+		"client": [
+			"com.franco227.shearable_blazes.ShearableBlazesClient"
+		]
+	},
+	"mixins": [
+		"shearable-blazes.mixins.json",
+		{
+			"config": "shearable-blazes.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": ">=1.20 <=1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
